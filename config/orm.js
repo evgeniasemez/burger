@@ -1,13 +1,17 @@
 var connection = require('./connection');
-class orm {
-    selectAll() {
-        console.log("select all");
-    }
+
+module.exports = {
+    selectAll(callback) {
+        connection.query("SELECT * FROM burgers", function (err, data) {
+            console.log("select all");
+            return callback(data);
+        });
+    },
     insertOne() {
         console.log("insert One");
-    }
+    },
     updateOne() {
         console.log("update One");
     }
 }
-module.exports = orm;
+// module.exports = orm;

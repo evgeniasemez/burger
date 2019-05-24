@@ -1,12 +1,18 @@
 var orm = require("../config/orm");
 
-class game {
+module.exports = {
+
+    selectAll(callback) {
+        orm.selectAll(callback);
+    },
+
     submitBurger() {
 
-    }
+    },
+
     devourBurger() {
 
     }
 }
 
-module.exports = game;
+// module.exports = game;
