@@ -1,12 +1,24 @@
 <h2>Add a Burger</h2>
-<form id="createplan" class="button-size">
-    <textarea type="text" name="plan"></textarea>
-    <button type="submit">Save Burger!</button>
-</form>
-<p>{{burger}}</p>
 
-{{!-- <ul>
-    {{#each burgers}}
-    <li>{{this}}</li>
-    {{/each}}
-</ul> --}}
+<div class="undevoured">
+    <ul>
+        {{#each burger}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+</div>
+
+<div class="devoured">
+    <ul>
+        {{#each burger}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+</div>
+<div>
+    <form id="createplan" class="button-size center">
+        <textarea type="text" class="text" name="plan"></textarea>
+        <button type="submit" class="button">Save a Burger!</button>
+    </form>
+</div>
+{{!-- <p>{{burger}}</p> --}}

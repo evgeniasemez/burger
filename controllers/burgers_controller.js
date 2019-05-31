@@ -7,15 +7,19 @@ var router = express.Router();
 
 // Use Handlebars to render the main index.html page with the burgers in it.
 router.get("/", function (req, res) {
+
     burger.selectAll(function (value) {
         console.log(value);
+        var burgerNames = [];
+        value.forEach(function (element) {
+            burgerNames.push("Burger name: " + element.burger_name);
+        });
+        res.render("index", { burger: burgerNames });
     });
 
     // if (err) {
     //     return res.status(500).end();
     // }
-
-    res.render("index", {burger: "string"});
 
 });
 

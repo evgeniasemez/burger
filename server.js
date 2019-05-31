@@ -1,5 +1,6 @@
 var express = require("express");
 var routing = require("./controllers/burgers_controller");
+const path = require("path");
 
 var app = express();
 
@@ -10,6 +11,9 @@ var PORT = process.env.PORT || 8080;
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+const publicPath = path.join(__dirname, "/public");
+app.use("/", express.static(publicPath));
 
 var exphbs = require("express-handlebars");
 

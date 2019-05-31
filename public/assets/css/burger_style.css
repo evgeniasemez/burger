@@ -1,0 +1,22 @@
+body{
+    background-color: orange;
+    text-align: center;
+}
+.center{
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+.text{
+    display: block;
+    width: 100%;
+}
+.undevoured{
+    display: inline-block;
+}
+.devoured{
+    display: inline-block;
+}
+ul{
+    list-style: none;
+}
