@@ -11,10 +11,17 @@ router.get("/", function (req, res) {
     burger.selectAll(function (value) {
         console.log(value);
         var burgerNames = [];
+        var eatenBurgers = [];
         value.forEach(function (element) {
-            burgerNames.push("Burger name: " + element.burger_name);
+            if (element.devoured) {
+                eatenBurgers.push("Eaten Burger: " + element.burger_name);
+            }
+            else {
+                burgerNames.push("Burger name: " + element.burger_name);
+            }
         });
-        res.render("index", { burger: burgerNames });
+        res.render("index", { burger: burgerNames, eatenBurger: eatenBurgers });
+
     });
 
     // if (err) {
@@ -24,17 +31,19 @@ router.get("/", function (req, res) {
 });
 
 // Create a new burger
-// router.post("/api/plans", function (req, res) {
-//     connection.query("INSERT INTO burgers (burger_name,devoured) VALUES (?)", [req.body.plan], function (err, result) {
-//         if (err) {
-//             return res.status(500).end();
-//         }
+router.put("/api/burger", function (req, res) {
+    console.log(req.body);
+    burger.submitBurger(req.body.name, function (err, result) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
+        }
 
-// Send back the ID of the new burger
-//         res.json({ id: result.insertId });
-//         console.log({ id: result.insertId });
-//     });
-// });
+        // Send back the ID of the new burger
+        res.json({ id: result.insertId });
+        console.log(result);
+    });
+});
 
 // Update a burger
 // router.put("/api/plans/:id", function (req, res) {

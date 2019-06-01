@@ -6,8 +6,8 @@ module.exports = {
         orm.selectAll(callback);
     },
 
-    submitBurger() {
-
+    submitBurger(burger_name, callback) {
+        orm.insertOne(burger_name, callback);
     },
 
     devourBurger() {

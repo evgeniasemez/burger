@@ -7,8 +7,11 @@ module.exports = {
             return callback(data);
         });
     },
-    insertOne() {
-        console.log("insert One");
+    insertOne(burger_name, callback) {
+        connection.query("INSERT INTO burgers (burger_name, devoured) VALUES (?,?)", [burger_name, false], function (err, result) {
+            console.log("Add a burger");
+            return callback(err, result);
+        });       
     },
     updateOne() {
         console.log("update One");

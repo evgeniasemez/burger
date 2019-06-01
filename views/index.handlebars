@@ -10,7 +10,7 @@
 
 <div class="devoured">
     <ul>
-        {{#each burger}}
+        {{#each eatenBurger}}
         <li>{{this}}</li>
         {{/each}}
     </ul>
@@ -18,7 +18,23 @@
 <div>
     <form id="createplan" class="button-size center">
         <textarea type="text" class="text" name="plan"></textarea>
-        <button type="submit" class="button">Save a Burger!</button>
+        <button type="button" class="button">Save a Burger!</button>
     </form>
 </div>
-{{!-- <p>{{burger}}</p> --}}
+<script type="text/javascript">
+    $(".button").on("click", function (event) {
+        var value = $(".text").val();
+        // Send the PUT request.
+        var newBurger = { name: value };
+        $.ajax("/api/burger", {
+            type: "PUT",
+            data: newBurger
+        }).then(
+            function () {
+                console.log("updated burger ", newBurger);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+</script>
