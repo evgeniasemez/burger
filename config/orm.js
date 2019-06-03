@@ -11,10 +11,13 @@ module.exports = {
         connection.query("INSERT INTO burgers (burger_name, devoured) VALUES (?,?)", [burger_name, false], function (err, result) {
             console.log("Add a burger");
             return callback(err, result);
-        });       
+        });
     },
-    updateOne() {
-        console.log("update One");
+    updateOne(burger_id, callback) {
+        connection.query("UPDATE burgers SET devoured = true WHERE id = ?", [burger_id], function (err, result) {
+            console.log("Update a burger");
+            return callback(err, result);
+        });
     }
 }
 // module.exports = orm;

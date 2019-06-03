@@ -14,10 +14,10 @@ router.get("/", function (req, res) {
         var eatenBurgers = [];
         value.forEach(function (element) {
             if (element.devoured) {
-                eatenBurgers.push("Eaten Burger: " + element.burger_name);
+                eatenBurgers.push(element);
             }
             else {
-                burgerNames.push("Burger name: " + element.burger_name);
+                burgerNames.push(element);
             }
         });
         res.render("index", { burger: burgerNames, eatenBurger: eatenBurgers });
@@ -46,20 +46,19 @@ router.put("/api/burger", function (req, res) {
 });
 
 // Update a burger
-// router.put("/api/plans/:id", function (req, res) {
-//     connection.query("UPDATE burgers SET plan = ? WHERE id = ?", [req.body.plan, req.params.id], function (err, result) {
-//         if (err) {
-// If an error occurred, send a generic server failure
-//     return res.status(500).end();
-// }
-// else if (result.changedRows === 0) {
-//     // If no rows were changed, then the ID must not exist, so 404
-//     return res.status(404).end();
-// }
-// res.status(200).end();
+router.post("/api/burger", function (req, res) {
+    console.log(req.body);
+    burger.devourBurger(req.body.id, function (err, result) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
+        }
 
-//     });
-// });
+        // Send back the ID of the devour burger
+        res.json({ id: result.insertId });
+        console.log(result);
+    });
+});
 
 // Delete a burger
 // router.delete("/api/plans/:id", function (req, res) {

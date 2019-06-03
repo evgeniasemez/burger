@@ -10,8 +10,8 @@ module.exports = {
         orm.insertOne(burger_name, callback);
     },
 
-    devourBurger() {
-
+    devourBurger(burger_id, callback) {
+        orm.updateOne(burger_id, callback);
     }
 }
 

@@ -1,9 +1,20 @@
-<h2>Add a Burger</h2>
+<div class="burgerImage">
+    <img src="/assets/img/burger.jpg" style="
+    width: 20%;">
+</div>
+
+<h2>Eat-Da-Burger!</h2>
+
+{{!-- <div class="burgerImage">
+    <img src="/public/assets/img/burger2.jpeg">
+</div> --}}
 
 <div class="undevoured">
     <ul>
         {{#each burger}}
-        <li>{{this}}</li>
+        <li>{{this.id}}: {{this.burger_name}}<button type="button" class="devourButton"
+                attributeDevour="{{this.id}}">Devour!</button></li>
+        {{!-- <button type="button" class="devourButton">Devour!</button> --}}
         {{/each}}
     </ul>
 </div>
@@ -11,7 +22,7 @@
 <div class="devoured">
     <ul>
         {{#each eatenBurger}}
-        <li>{{this}}</li>
+        <li>{{this.burger_name}}</li>
         {{/each}}
     </ul>
 </div>
@@ -37,4 +48,17 @@
             }
         );
     });
+    $(".devourButton").on("click", function (event) {
+        var devourBurger = { id: this.attr("attributeDevour")};
+        $.ajax("/api/burger", {
+            type: "POST",
+            data: devourBurger
+        }).then(
+            function () {
+                console.log("devour burger ", devourBurger);
+                location.reload();
+            }
+        );
+    });
+
 </script>

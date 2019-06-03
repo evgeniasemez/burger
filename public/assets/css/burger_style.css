@@ -1,6 +1,8 @@
 body{
     background-color: orange;
     text-align: center;
+    /* background-image: url('/assets/img/burger.jpg'); */
+    background-size: 100%;
 }
 .center{
     margin: 0 auto;
@@ -19,4 +21,10 @@ body{
 }
 ul{
     list-style: none;
+}
+.burgerImage{
+    width: 100%;
+}
+.devourButton{
+    
 }
