@@ -9,7 +9,7 @@
 <div class="undevoured">
     <ul>
         {{#each burger}}
-        <li>{{this.id}}: {{this.burger_name}}<button type="button" class="devourButton"
+        <li>{{this.burger_name}}<button type="button" class="devourButton"
                 attributeDevour="{{this.id}}">Devour!</button></li>
         {{!-- <button type="button" class="devourButton">Devour!</button> --}}
         {{/each}}
@@ -48,7 +48,7 @@
         );
     });
     $(".devourButton").on("click", function (event) {
-        var devourBurger = { id: this.attr("attributeDevour")};
+        var devourBurger = { id: $(this).attr("attributeDevour")};
         $.ajax("/api/burger", {
             type: "POST",
             data: devourBurger
