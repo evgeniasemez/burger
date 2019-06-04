@@ -16,14 +16,16 @@ app.use(express.json());
 
 const publicPath = path.join(__dirname, "/public");
 app.use("/", express.static(publicPath));
-
+// setting handlebars 
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// root routing
 app.use("/", routing);
 
+// listener 
 app.listen(PORT, function () {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
